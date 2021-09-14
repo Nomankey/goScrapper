@@ -8,5 +8,8 @@ import (
 
 func main() {
 	account := accounts.NewAccount("nomankey")
+
+	account.Deposit(10)
+	fmt.Println(account.Balance())
 	fmt.Println(account)
 }
