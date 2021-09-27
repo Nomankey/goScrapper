@@ -1,4 +1,6 @@
 package accounts
+
+import "errors"
 // Account struct
 type Account struct {
 	owner   string
@@ -11,7 +13,7 @@ func NewAccount(owner string) *Account {
 }
 
 // Deposit x amount on your account
-func (a Account) Deposit(amount int) {
+func (a *Account) Deposit(amount int) {
 	a.balance += amount
 }
 
@@ -19,3 +21,12 @@ func (a Account) Deposit(amount int) {
 func (a Account) Balance() int {
 	return a.balance
 }
+
+func (a *Account) Withdraw(amount int) error {
+	if a.balance < amount {
+		return errors.New("can't withdraw!")
+	}
+	a.balance -= amount
+	return nil
+}
+
